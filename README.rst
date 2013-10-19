@@ -4,19 +4,17 @@ aert-dropthings
 Abstract
 ********
 
-I need a way to easily save links, files and text contents from workplace,
+I need a way to save easily links, files and text contents from workplace,
 without using emails.
 
 Rationale
 *********
 
-This project will provide a web app allowing users to upload files and texts
+This project provides a web app allowing users to upload files and texts
 from restricted access networks.
 
-Description
-***********
-
-The following features are available :
+Features
+********
 
 * Upload content recognized by type : Link, Text, File
 * Mark content as public/private
@@ -32,17 +30,20 @@ Dependencies:
 Installation
 ************
 
-*Release Mode*
+Release
+-------
 
-From source::
+* From source::
 
     $ make install
 
-From debian package::
+* From debian package::
 
     $ dpkg -i dropthings.deb
 
-*Development Mode*
+Development
+-----------
+
 ::
 
     $ make develop
@@ -51,10 +52,9 @@ Usage
 *****
 
 Development
-===========
+-----------
 
-*Build Deb*
-::
+* Build Deb::
 
     $ make deb
 
@@ -71,11 +71,13 @@ More Information
 * GitHub : http://github.com/aert/aert-dropthings
 * Documentation : http://dropthings.readthedocs.org
  
-*License*
+License
+-------
  
 This project is licensed under the MIT license.
 
-*Support*
+Support
+-------
 
 * Issue Tracking : https://github.com/aert/aert-dropthings/issues
 * Pull Request : https://github.com/aert/aert-dropthings/pulls
