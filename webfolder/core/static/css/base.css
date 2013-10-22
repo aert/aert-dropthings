@@ -1,0 +1,15 @@
+
+html,
+body {
+  font-size: 15px;
+  padding: 20px;
+  height: 100%;
+}
+body {
+  font-family: "Open Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  background: #FCFCFC url(bg.jpg) repeat;
+  margin: 0px;
+  padding: 0px;
+  color: #555555;
+  min-width: 320px;
+}
