@@ -37,16 +37,16 @@ extras_requires = {
     'docs': ['sphinx'],
 }
 
-setup(name='dropthings',
+setup(name='webfolder',
       version='0.1a',
-      description='Web app to save links and files without using emails.',
+      description='Save and share files from this web app.',
       long_description=README + '\n\n' + CHANGES,
       classifiers=[
           "Programming Language :: Python",
       ],
       author='aert',
       author_email='dev.aert@gmail.com',
-      url='https://github.com/aert/aert-dropthings',
+      url='https://github.com/aert/aert-webfolder',
       keywords='online save tools',
       packages=find_packages(exclude=['tests']),
       include_package_data=True,
@@ -57,6 +57,6 @@ setup(name='dropthings',
       extras_require=extras_requires,
       entry_points="""\
       [console_scripts]
-      dropthings-web = dropthings.web.cli:main
+      webfolder-web = webfolder.web.cli:main
       """,
       )
