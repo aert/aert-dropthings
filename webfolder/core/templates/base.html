@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿{% load staticfiles %}
+
+        
+<!DOCTYPE html>
 <head>
     <!-- Standard Meta -->
     <meta charset="utf-8"/>
@@ -8,12 +11,13 @@
     <!-- Site Properities -->
     <title>WebFolder</title>
 
-    <link rel="stylesheet" type="text/css" href="../packaged/css/semantic.css">
-    <link rel="stylesheet" type="text/css" href="base.css">
+    <!--Semantic UI-->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/semantic/css/semantic.css' %}">
+    <script src="{% static 'javascript/jquery-2.0.3.min.js' %}"></script>
+    <script src="{% static 'vendor/semantic/javascript/semantic.js' %}"></script>
 
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.js"></script>
-    <script src="../packaged/javascript/semantic.js"></script>
-    <script src="base.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+    <script src="{% static 'javascript/base.js' %}"></script>
 </head>
 <html>
 <body id="feed">
