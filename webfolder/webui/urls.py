@@ -5,7 +5,7 @@ from django.conf.urls import patterns, include, url
 # admin.autodiscover()
 
 urlpatterns = patterns('',
-                       url(r'^', include('core.urls')),
+                       url(r'^', include('webfolder.urls')),
                        # Examples:
                        # url(r'^$', 'webui.views.home', name='home'),
                        # url(r'^webui/', include('webui.foo.urls')),
