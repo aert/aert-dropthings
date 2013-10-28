@@ -2,6 +2,7 @@
 
 from os.path import abspath, basename, dirname, join, normpath
 from sys import path
+from django.conf import global_settings
 
 
 DEBUG = True
@@ -149,6 +150,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
+    'lineage',
     'common',
     'webfolder',
 )
@@ -183,3 +185,8 @@ LOGGING = {
         },
     }
 }
+
+#####
+TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
+    'django.core.context_processors.request',
+)

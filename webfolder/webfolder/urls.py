@@ -1,9 +1,15 @@
 from django.conf.urls import patterns, url
-from django.views.generic import TemplateView
+from django.core.urlresolvers import reverse_lazy
+from django.views.generic import RedirectView
+from .views.files import FilesView
+from .views.friends import FriendsView
+from .views.shares import SharesView
+
 
 urlpatterns = patterns(
     'webfolder.views',
-    url(r'^$',
-        TemplateView.as_view(template_name='webfolder/base.html'),
-        name='home'),
+    url(r'^$', RedirectView.as_view(url=reverse_lazy('files'))),
+    url(r'^files', FilesView.as_view(), name='files'),
+    url(r'^shares', SharesView.as_view(), name='shares'),
+    url(r'^friends', FriendsView.as_view(), name='friends'),
 )

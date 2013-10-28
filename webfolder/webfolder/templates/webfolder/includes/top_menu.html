@@ -1,13 +1,14 @@
+{% load lineage %}
 
 <div class="ui tiered menu">
     <div class="menu">
-        <a class="active item">
+        <a class="{% ancestor 'files' %} item" href="{% url "files" %}">
             <i class="time icon"></i>Files
         </a>
-        <a class="item">
+        <a class="{% ancestor 'shares' %} item" href="{% url "shares" %}">
             <i class="cloud upload icon"></i>My Shares
         </a>
-        <a class="item">
+        <a class="{% ancestor 'friends' %} item" href="{% url "friends" %}">
             <i class="cloud download icon"></i>Friends
         </a>
 
