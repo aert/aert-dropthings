@@ -15,6 +15,10 @@ body {
 }
 
 a {
-  color: #D95C5C;
   text-decoration: none;
+}
+
+
+.ui.feed a {
+    color: #D95C5C;
 }
