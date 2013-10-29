@@ -1,0 +1,54 @@
+{% extends "webfolder/_base.html" %}
+
+{% block title %}
+My Files {{ block.super }}
+{% endblock %}
+
+{% block content %}
+
+<div class="ui stacked segment">
+    <h3 class="ui dividing header">
+        My Files
+    </h3>
+
+    <div class="ui stacked feed segment">
+        <h4 class="ui dividing header">
+            3 days ago
+        </h4>
+
+        <div class="event">
+            <div class="label">
+                <a href="#"><i class="circular globe icon"></i></a>
+            </div>
+            <div class="content">
+                <div class="date">
+                    3 days ago
+                </div>
+                <div class="summary">
+                    <a>You</a> added <a>2 links</a>
+                </div>
+                <div class="extra text">
+                    <div class="ui horizontal list">
+                        <div class="item"><a href="http://www.github.com/aert">http://www.github.com/aert</a></div>
+                        <div class="item"><a href="http://www.m6.fr">http://www.m6.fr</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ACTIONS -->
+        <center>
+            <div class="ui labeled primary icon button">
+                <i class="remove circle icon"></i>
+                Delete
+            </div>
+            <a href="{% url "files" %}">
+                <div class="ui right labeled icon button">
+                    <i class="level up icon"></i>
+                    Cancel
+                </div>
+            </a>
+        </center>
+    </div>
+</div>
+
+{% endblock %}
