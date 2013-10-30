@@ -42,13 +42,12 @@ My Files {{ block.super }}
                 <i class="lock icon"></i>
                 UnShare
             </div> 
-            <div class="ui labeled negative icon button">
-                <i class="remove circle icon"></i>
+            <a class="ui labeled negative icon button delete_button">
+                <i class="trash icon"></i>
                 Delete
-            </div>
+            </a>
             <a href="{% url "files" %}">
-                <div class="ui right labeled icon button">
-                    <i class="level up icon"></i>
+                <div class="ui button">
                     Cancel
                 </div>
             </a>
@@ -56,4 +55,22 @@ My Files {{ block.super }}
     </div>
 </div>
 
+<!-- MODAL -->
+<div class="ui small modal delete_modal">
+  <div class="header">
+    Delete Confirmation
+  </div>
+  <div class="content">
+    <p>Do you want to delete this item ?</p>
+  </div>
+  <div class="actions">
+      <div class="ui labeled primary icon button">
+          <i class="trash icon"></i>
+          Delete
+      </div>
+      <div class="ui button">
+          Cancel
+      </div>
+  </div>
+</div>
 {% endblock %}
