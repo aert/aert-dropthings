@@ -7,8 +7,53 @@ My Shares {{ block.super }}
 {% block content %}
 <div class="ui stacked feed segment">
     <h3 class="ui dividing header">
-        Shared by Me
+        My Shares
     </h3>
 
+    <div class="event">
+        <div class="label">
+            <a href="{% url "files-detail" 1 %}"> <i class="circular attachment icon"></i></a>
+
+        </div>
+        <div class="content">
+            <div class="date">
+                Just moments ago
+            </div>
+            <div class="summary">
+                <i class="circular inverted green unlock icon"></i>
+                <a>You</a> added 3 attachements
+            </div>
+
+            <div class="extra text">
+                <div class="ui small horizontal list">
+                    <div class="item">
+                        <i class="large download icon"></i>
+
+                        <div class="content">
+                            <div class="header"><a href="#">MCD WebFolder.mcd</a></div>
+                            3,7 Mo
+                        </div>
+                    </div>
+                    <div class="item">
+                        <i class="large download icon"></i>
+
+                        <div class="content">
+                            <div class="header"><a href="#">Déclaration Droits.docx</a></div>
+                            695,78 Ko
+                        </div>
+                    </div>
+                    <div class="item">
+                        <i class="large download icon"></i>
+
+                        <div class="content">
+                            <div class="header"><a href="#">0071627022_McGraw.Hill.-.Pre-Calculus.Know-It-ALL.Edition.2009.Retail.Ebook-ATTiCA.rar</a>
+                            </div>
+                            1,54 Go
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}
