@@ -15,3 +15,11 @@ class FilesViewDetail(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(FilesViewDetail, self).get_context_data(**kwargs)
         return context
+
+
+class FilesViewNewFile(TemplateView):
+    template_name = 'webfolder/activity_new_file.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(FilesViewNewFile, self).get_context_data(**kwargs)
+        return context

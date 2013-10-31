@@ -21,10 +21,12 @@
 </head>
 <html>
 <body id="feed">
-{% include "webfolder/includes/top_menu.html" %}
 
+    {% include "webfolder/includes/menu_top.html" %}
 
-{% block content %}{% endblock %}
+    {% include "webfolder/includes/base_modals.html" %}
+
+    {% block content %}{% endblock %}
 
 </body>
 

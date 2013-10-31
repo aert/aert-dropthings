@@ -1,0 +1,43 @@
+{% extends "webfolder/_base.html" %}
+
+{% block title %}
+New File {{ block.super }}
+{% endblock %}
+
+{% block content %}
+
+<div class="ui stacked segment">
+    <h3 class="ui dividing header">
+        New File...
+    </h3>
+
+    <div class="ui raised segment">
+        <div class="ui form">
+            <div class="inline field">
+                <label>Choose Files :</label>
+                <input type="file" multiple="multiple" />
+            </div>
+            <div class="inline field">
+                <div class="ui toggle checkbox">
+                    <input type="checkbox">
+                    <label>Mark as Public</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ACTIONS -->
+    <center>
+        <div class="actions">
+            <div class="ui labeled blue icon button">
+                <i class="save icon"></i>
+                Save
+            </div>
+            <a href="{% url "files" %}">
+                <div class="ui button">Cancel</div>
+            </a>
+        </div>
+    </center>
+</div>
+
+{% endblock %}
