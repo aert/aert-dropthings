@@ -28,7 +28,7 @@ requires_dev = [
     'flake8==2.0',
     # Deploy tools
     #'ansible==1.3.3',
-    #'Fabric==1.8.0',
+    'Fabric==1.8.0',
     #'fabtools==0.15.0',
 ]
 
