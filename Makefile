@@ -11,7 +11,7 @@ default:
 	cd $(FABRIC_PATH); fab -l
 	
 ## This target englob all the targets on this makefile
-all:  clean dev_setup dev_setup_vagrant
+all:  clean dev_setup vagrant_setup
 
 
 ## clean temporary files after a building operation
@@ -28,7 +28,9 @@ dev_setup:
 	python setup.py dev
 
 
-## Run fabric commands
-dev_setup_vagrant:
+vagrant_setup:
 	cd $(FABRIC_PATH); fab vagrant.setup
+
+vagrant_destroy:
+	cd $(VAGRANT_PATH); vagrant destroy
 

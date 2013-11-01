@@ -1,25 +1,23 @@
 # -*- mode: ruby; -*-
-require 'etc'
+# vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-  config.vm.define :web do |web|
-    # Ubuntu 12.04
-    web.vm.box = "wheezy-rc1"
-    web.vm.box_url = "http://puppet-vagrant-boxes.puppetlabs.com/debian-70rc1-x64-vbox4210-nocm.box"
+  # Debian Wheezy
+  config.vm.box = "wheezy64"
+  config.vm.box_url = "https://dl.dropboxusercontent.com/s/xymcvez85i29lym/vagrant-debian-wheezy64.box"
 
-    # Network
-    web.vm.network :private_network, ip: "192.168.111.222"
-    web.vm.hostname = "vagrant.dropthings.org"
-    web.vm.network :forwarded_port, guest: 80, host: 8080, auto_correct: true
-    web.vm.network :forwarded_port, guest: 5432, host: 5432
+  # Network
+  config.vm.network :private_network, ip: "192.168.111.222"
+  config.vm.hostname = "vagrant.webfolder.org"
+  config.vm.network :forwarded_port, guest: 80, host: 8080, auto_correct: true
+  config.vm.network :forwarded_port, guest: 5432, host: 5432
 
-    # Share for masterless server
-    #web.vm.synced_folder "salt/roots/", "/srv/"
+  #config.vm.synced_folder "../data", "/vagrant_data"
 
-    # Customize the box
-    web.vm.provider :virtualbox do |v|
-      v.customize ["modifyvm", :id, "--memory", 512]
-    end
+  # Customize the box
+  config.vm.provider :virtualbox do |v|
+    v.customize ["modifyvm", :id, "--memory", 512]
   end
+
 end
 
