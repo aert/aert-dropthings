@@ -1,4 +1,5 @@
 
+SRC_PATH=webfolder
 VAGRANT_PATH=deploy
 FABRIC_PATH=deploy/fabric
 
@@ -28,9 +29,18 @@ dev_setup:
 	python setup.py dev
 
 
+# VAGRANT
+# #######
+
 vagrant_setup:
 	cd $(FABRIC_PATH); fab vagrant.setup
 
 vagrant_destroy:
 	cd $(VAGRANT_PATH); vagrant destroy
+
+# MANAGE.PY
+# #########
+
+manage_runserver:
+	cd $(SRC_PATH); python manage.py runserver 0.0.0.0:8000
 

@@ -13,7 +13,7 @@ My Files {{ block.super }}
 
     <div class="event">
         <div class="label">
-            <a href="{% url "files-detail" 1 %}"> <i class="circular attachment icon"></i></a>
+            <i class="circular attachment icon"></i>
 
         </div>
         <div class="content">
@@ -22,7 +22,7 @@ My Files {{ block.super }}
             </div>
             <div class="summary">
                 <i class="circular inverted green unlock icon"></i>
-                <a>You</a> added 3 attachements
+                <a>You</a> added <a href="{% url "files-detail" 1 %}">3 attachements</a>
             </div>
 
             <div class="extra text">
@@ -58,14 +58,14 @@ My Files {{ block.super }}
     </div>
     <div class="event">
         <div class="label">
-            <a href="{% url "files-detail" 1 %}"><i class="circular comment outline icon"></i></a>
+            <i class="circular comment outline icon"></i>
         </div>
         <div class="content">
             <div class="date">
                 3 days ago
             </div>
             <div class="summary">
-                <a>You</a> added a note
+                <a>You</a> added <a href="{% url "files-detail" 1 %}">a note</a>
             </div>
             <div class="extra text">
                 I am a dog and I do not know how to make a post
@@ -74,14 +74,14 @@ My Files {{ block.super }}
     </div>
     <div class="event">
         <div class="label">
-            <a href="{% url "files-detail" 1 %}"><i class="circular globe icon"></i></a>
+            <i class="circular globe icon"></i>
         </div>
         <div class="content">
             <div class="date">
                 3 days ago
             </div>
             <div class="summary">
-                <a>You</a> added <a>2 links</a>
+                <a>You</a> added <a href="{% url "files-detail" 1 %}">2 links</a>
             </div>
             <div class="extra text">
                 <div class="ui horizontal list">
