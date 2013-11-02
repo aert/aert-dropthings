@@ -23,6 +23,8 @@
 .idea
 .vagrant
 .tags
+.project
+.pydevproject
 
 # This project
-/public/assets/*
+/public/assets/
