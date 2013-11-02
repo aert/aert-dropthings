@@ -2,13 +2,13 @@
 html,
 body {
   font-size: 15px;
-  padding: 40px;
+  padding: 20px;
   height: 100%;
 }
 body {
   font-family: "Open Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-  /*background: #FCFCFC url(../images/bg.png) repeat;*/
-  background-color: #F3F0EB;
+  background: #FCFCFC url(../images/bg.png) repeat;
+  /*background-color: #F3F0EB;*/
   margin: 0px;
   padding: 0px;
   color: #555555;
