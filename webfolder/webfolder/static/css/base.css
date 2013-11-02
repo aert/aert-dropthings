@@ -23,3 +23,10 @@ a {
 .ui.feed a {
     color: #D95C5C;
 }
+
+
+body.login #main_segment {
+	max-width: 400px;
+	margin-left:auto;
+	margin-right:auto;
+}

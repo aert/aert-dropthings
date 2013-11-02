@@ -1,5 +1,7 @@
 {% load lineage %}
 
+{% if user.is_authenticated or not "logout" in request.path%}
+
 <div class="ui tiered menu">
 	<div class="menu">
 		<a class="{% ancestor 'files' %} item" href="{% url "files" %}"> 
@@ -32,3 +34,5 @@
 		<a class="item"><i class="attachment icon"></i> Files </a>
 	</div>
 </div>
+
+{% endif %}
