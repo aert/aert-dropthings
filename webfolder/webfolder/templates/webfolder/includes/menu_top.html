@@ -1,35 +1,34 @@
 {% load lineage %}
 
 <div class="ui tiered menu">
-    <div class="menu">
-        <a class="{% ancestor 'files' %} item" href="{% url "files" %}">
-            <i class="time icon"></i>Activity
-        </a>
-        <a class="{% ancestor 'shares' %} item" href="{% url "shares" %}">
-            <i class="cloud upload icon"></i>My Shares
-        </a>
-        <a class="{% ancestor 'friends' %} item" href="{% url "friends" %}">
-            <i class="cloud download icon"></i>Friends
-        </a>
+	<div class="menu">
+		<a class="{% ancestor 'files' %} item" href="{% url "files" %}"> 
+			<i class="time icon"></i>Activity
+		</a> 
+		<a class="{% ancestor 'shares' %} item" href="{% url "shares" %}">
+			<i class="cloud upload icon"></i>My Shares
+		</a> 
+		<a class="{% ancestor 'friends' %} item" href="{% url "friends" %}">
+			<i class="cloud download icon"></i>Friends
+		</a>
 
-        <div class="right menu">
-            <div class="item">
-                <div class="ui icon input">
-                    <input placeholder="Search..." type="text">
-                    <i class="search icon"></i>
-                </div>
-            </div>
+		<div class="right menu">
+			<div class="item">
+				<div class="ui icon input">
+					<input placeholder="Search..." type="text"> 
+					<i class="search icon"></i>
+				</div>
+			</div>
 
-            {% include "webfolder/includes/menu_top_new.html" %}
+			{% include "webfolder/includes/menu_top_new.html" %}
+			{% include "webfolder/includes/menu_top_account.html" %}
 
-            {% include "webfolder/includes/menu_top_account.html" %}
-
-        </div>
-    </div>
-    <div class="ui sub menu">
-        <a class="active item"><i class="home icon"></i> All </a>
-        <a class="item"><i class="comment outline icon"></i> Notes </a>
-        <a class="item"><i class="globe icon"></i> Links </a>
-        <a class="item"><i class="attachment icon"></i> Files </a>
-    </div>
+		</div>
+	</div>
+	<div class="ui sub menu">
+		<a class="active item"><i class="home icon"></i> All </a> 
+		<a class="item"><i class="comment outline icon"></i> Notes </a>
+		<a class="item"><i class="globe icon"></i> Links </a> 
+		<a class="item"><i class="attachment icon"></i> Files </a>
+	</div>
 </div>
