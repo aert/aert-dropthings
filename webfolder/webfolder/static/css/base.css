@@ -7,7 +7,8 @@ body {
 }
 body {
   font-family: "Open Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-  background: #FCFCFC url(../images/bg.png) repeat;
+  /*background: #FCFCFC url(../images/bg.png) repeat;*/
+  background-color: #F3F0EB;
   margin: 0px;
   padding: 0px;
   color: #555555;
