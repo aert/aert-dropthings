@@ -22,7 +22,23 @@ clean:
 	rm -rf `find . -name *.pyc`
 	rm -rf `find . -name *.pyo`
 	rm -rf `find . -type d -name *.egg-info`
+	rm -rf docs/build
+	$(MAKE) clean_deb_unused
 	
+clean_deb_unused:
+	rm -rf dist/
+	rm -rf debian/aert-webfolder/
+	rm -rf debian/aert-webfolder.substvars
+	rm -rf debian/aert-webfolder.log
+	rm -rf debian/aert-webfolder.debhelper.log
+	rm -rf debian/files
+	rm -rf build/bdist.linux-x86_64/
+	rm -rf build/lib.linux-x86_64-2.7/
+
+clean_all:
+	$(MAKE) clean
+	rm -rf build/*
+
 
 ## init dev env
 dev_setup:
@@ -30,11 +46,13 @@ dev_setup:
 
 deb:
 	dpkg-buildpackage -us -uc
-	mkdir -p build/$(VERSION)/DEB
-	mv ../*.deb ./build/$(VERSION)/DEB
-	mv ../*.dsc ./build/$(VERSION)/DEB
-	mv ../*.changes ./build/$(VERSION)/DEB
-	mv ../*.tar.gz ./build/$(VERSION)/DEB
+	mkdir -p build/DEB
+	mv ../*.deb ./build/DEB
+	mv ../*.dsc ./build/DEB
+	mv ../*.changes ./build/DEB
+	mv ../*.tar.gz ./build/DEB
+	$(MAKE) clean_deb_unused
+
 
 # VAGRANT
 # #######
