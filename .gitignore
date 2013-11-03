@@ -11,6 +11,9 @@
 # Build dirs
 /docs/build
 /build/*
+/debian/aert-webfolder.substvars
+/debian/aert-webfolder/
+/debian/files
 
 # SQLite3 database files:
 *.db
@@ -28,3 +31,4 @@
 
 # This project
 /public/assets/
+

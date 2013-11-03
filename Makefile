@@ -29,7 +29,7 @@ dev_setup:
 	python setup.py dev
 
 deb:
-	dpkg-buildpackage
+	dpkg-buildpackage -us -uc
 	mkdir -p build/$(VERSION)/DEB
 	mv ../*.deb ./build/$(VERSION)/DEB
 	mv ../*.dsc ./build/$(VERSION)/DEB

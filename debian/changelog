@@ -1,3 +1,9 @@
+aert-webfolder (0.1-1ubuntu1) unstable; urgency=low
+
+  * Added debian/* folder. 
+
+ -- ari <ari@k73ta>  Sun, 03 Nov 2013 20:16:57 +0100
+
 aert-webfolder (0.1-1) unstable; urgency=low
 
   * Initial release.
