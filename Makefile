@@ -28,6 +28,13 @@ clean:
 dev_setup:
 	python setup.py dev
 
+deb:
+	dpkg-buildpackage
+	mkdir -p build/$(VERSION)/DEB
+	mv ../*.deb ./build/$(VERSION)/DEB
+	mv ../*.dsc ./build/$(VERSION)/DEB
+	mv ../*.changes ./build/$(VERSION)/DEB
+	mv ../*.tar.gz ./build/$(VERSION)/DEB
 
 # VAGRANT
 # #######
