@@ -14,6 +14,7 @@ Vcs-Browser: https://github.com/aert/aert-webfolder
 
 Package: aert-webfolder
 Architecture: any
-Depends: ${misc:Depends}, ${python:Depends}
+Depends: ${misc:Depends},
+    python (>= 2.7-3~)
 Description: Online storage for links notes and files.
  See homepage for more information.

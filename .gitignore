@@ -10,10 +10,11 @@
 
 # Build dirs
 /docs/build
-/build/*
+/build
 /debian/aert-webfolder.substvars
 /debian/aert-webfolder/
 /debian/files
+/dist
 
 # SQLite3 database files:
 *.db

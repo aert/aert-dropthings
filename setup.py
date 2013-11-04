@@ -8,13 +8,24 @@ with open(os.path.join(here, 'README.rst')) as f:
 with open(os.path.join(here, 'CHANGES.rst')) as f:
     CHANGES = f.read()
 
+
+def gen_data_files(*dirs):
+    results = []
+
+    for src_dir in dirs:
+        for root, dirs, files in os.walk(src_dir):
+            results.append((root, map(lambda f: root + "/" + f, files)))
+    return results
+
+
 requires_base = [
     'Django==1.5.4',
     'django-braces==1.2.2',
     'django-model-utils==1.5.0',
     'South==0.8.2',
     'psycopg2==2.5.1',
-    'django-compressor==1.3',
+    'gunicorn==18.0',
+    #'django-compressor==1.3',
     #'django-grappelli==2.4.6',
     'django-lineage==0.2.0',
 ]
@@ -50,6 +61,7 @@ setup(name='webfolder',
       url='https://github.com/aert/aert-webfolder',
       keywords='online save tools',
       packages=find_packages(exclude=['tests']),
+      data_files=gen_data_files('etc', 'deploy'),
       include_package_data=True,
       zip_safe=False,
       test_suite='tests',
@@ -58,6 +70,6 @@ setup(name='webfolder',
       extras_require=extras_requires,
       entry_points="""\
       [console_scripts]
-      webfolder-web = webfolder.web.cli:main
+      aert-webfolder = webfolder.manage:main
       """,
       )

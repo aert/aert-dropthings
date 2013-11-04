@@ -9,7 +9,8 @@ PREFIX?=/usr
 
 ## default target, it's what to do if you typed "make" without target
 default: 
-	cd $(FABRIC_PATH); fab -l
+	@echo "-- default target: empty"
+	
 	
 ## This target englob all the targets on this makefile
 all:  clean dev_setup vagrant_setup
@@ -18,10 +19,11 @@ all:  clean dev_setup vagrant_setup
 ## clean temporary files after a building operation
 clean:
 	@echo "Cleaning..." 
+	rm -rf public/assets/
 	rm -rf `find . -type f -name Thumbs.db`
 	rm -rf `find . -name *.pyc`
 	rm -rf `find . -name *.pyo`
-	rm -rf `find . -type d -name *.egg-info`
+	#rm -rf `find . -type d -name *.egg-info`
 	rm -rf docs/build
 	$(MAKE) clean_deb_unused
 	
@@ -37,12 +39,26 @@ clean_deb_unused:
 
 clean_all:
 	$(MAKE) clean
-	rm -rf build/*
+	rm -rf build
 
 
 ## init dev env
 dev_setup:
 	python setup.py dev
+
+dev_setup_deb: dev_setup_apt
+	# Compile and install dh-virtualenv
+	sudo apt-get install python debhelper python-setuptools python-sphinx python-mock python-virtualenv 
+	rm -rf /tmp/dh-virtualenv
+	git clone https://github.com/spotify/dh-virtualenv.git /tmp/dh-virtualenv
+	cd /tmp/dh-virtualenv; dpkg-buildpackage; sudo dpkg -i ../dh-virtualenv*.deb
+
+dev_setup_apt:
+	sudo apt-get install python-dev libpq-dev
+
+
+# DEB
+# ###
 
 deb:
 	dpkg-buildpackage -us -uc
@@ -53,19 +69,29 @@ deb:
 	mv ../*.tar.gz ./build/DEB
 	$(MAKE) clean_deb_unused
 
-
 # VAGRANT
 # #######
 
 vagrant_setup:
 	cd $(FABRIC_PATH); fab vagrant.setup
 
+vagrant_ssh:
+	cd $(VAGRANT_PATH); vagrant up; vagrant ssh
+
+vagrant_reload:
+	cd $(VAGRANT_PATH); vagrant reload
+
 vagrant_destroy:
 	cd $(VAGRANT_PATH); vagrant destroy
+
+vagrant_install:
+	mkdir -p /var/www/aert-webfolder/public
+	cp deploy/start_webfolder.sh /var/www/aert-webfolder
+	cp etc/config_release.ini /var/www/aert-webfolder/config.ini
 
 # MANAGE.PY
 # #########
 
 manage_runserver:
-	cd $(SRC_PATH); python manage.py runserver 0.0.0.0:8000
+	aert-webfolder runserver 0.0.0.0:8000
 
