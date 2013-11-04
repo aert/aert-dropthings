@@ -14,6 +14,11 @@ else:
 
 # [main]
 ALLOWED_HOSTS = config.get('main', 'ALLOWED_HOSTS').split()
+if not DEVELOP:
+    STATIC_ROOT = config.get('main', 'STATIC_ROOT')
+    STATIC_URL = config.get('main', 'STATIC_URL')
+    MEDIA_ROOT = config.get('main', 'MEDIA_ROOT')
+    MEDIA_URL = config.get('main', 'MEDIA_URL')
 
 # [database]
 DATABASE_USER = config.get('database', 'DATABASE_USER')

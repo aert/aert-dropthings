@@ -1,7 +1,12 @@
 
+PROJECT_NAME=aert-webfolder
+PROJECT_VERSION=1.0-dev
 SRC_PATH=webfolder
 VAGRANT_PATH=deploy
 FABRIC_PATH=deploy/fabric
+
+WWW_PATH=/opt/aert/www-webfolder
+VENV_PATH=/opt/aert/envs/aert-webfolder
 
 ##  Installation Paths:
 PREFIX?=/usr
@@ -13,29 +18,16 @@ default:
 	
 	
 ## This target englob all the targets on this makefile
-all:  clean dev_setup vagrant_setup
+all:  clean develop vagrant_setup
 
 
 ## clean temporary files after a building operation
 clean:
 	@echo "Cleaning..." 
 	rm -rf public/assets/
-	rm -rf `find . -type f -name Thumbs.db`
 	rm -rf `find . -name *.pyc`
 	rm -rf `find . -name *.pyo`
-	#rm -rf `find . -type d -name *.egg-info`
 	rm -rf docs/build
-	$(MAKE) clean_deb_unused
-	
-clean_deb_unused:
-	rm -rf dist/
-	rm -rf debian/aert-webfolder/
-	rm -rf debian/aert-webfolder.substvars
-	rm -rf debian/aert-webfolder.log
-	rm -rf debian/aert-webfolder.debhelper.log
-	rm -rf debian/files
-	rm -rf build/bdist.linux-x86_64/
-	rm -rf build/lib.linux-x86_64-2.7/
 
 clean_all:
 	$(MAKE) clean
@@ -43,31 +35,17 @@ clean_all:
 
 
 ## init dev env
-dev_setup:
+develop:
 	python setup.py dev
 
-dev_setup_deb: dev_setup_apt
-	# Compile and install dh-virtualenv
-	sudo apt-get install python debhelper python-setuptools python-sphinx python-mock python-virtualenv 
-	rm -rf /tmp/dh-virtualenv
-	git clone https://github.com/spotify/dh-virtualenv.git /tmp/dh-virtualenv
-	cd /tmp/dh-virtualenv; dpkg-buildpackage; sudo dpkg -i ../dh-virtualenv*.deb
-
-dev_setup_apt:
+dev_setup_initial:
 	sudo apt-get install python-dev libpq-dev
+	# For wheel
+	pip install --upgrade pip
 
+dev_runserver:
+	export AERT_WEBFOLDER_CONFIG=`pwd`/etc/config_develop.ini; aert-webfolder runserver 0.0.0.0:8000
 
-# DEB
-# ###
-
-deb:
-	dpkg-buildpackage -us -uc
-	mkdir -p build/DEB
-	mv ../*.deb ./build/DEB
-	mv ../*.dsc ./build/DEB
-	mv ../*.changes ./build/DEB
-	mv ../*.tar.gz ./build/DEB
-	$(MAKE) clean_deb_unused
 
 # VAGRANT
 # #######
@@ -85,13 +63,24 @@ vagrant_destroy:
 	cd $(VAGRANT_PATH); vagrant destroy
 
 vagrant_install:
-	mkdir -p /var/www/aert-webfolder/public
-	cp deploy/start_webfolder.sh /var/www/aert-webfolder
-	cp etc/config_release.ini /var/www/aert-webfolder/config.ini
+	mkdir -p $(WWW_PATH)/{public,upload}
+	cp deploy/start_webfolder.sh $(WWW_PATH)/
+	cp etc/config_release.ini $(WWW_PATH)/config.ini
+	source $(VENV_PATH)/bin/activate;export AERT_WEBFOLDER_CONFIG=$(WWW_PATH)/config.ini; aert-webfolder collectstatic
 
-# MANAGE.PY
-# #########
+# DEPLOYMENT
+# ##########
 
-manage_runserver:
-	aert-webfolder runserver 0.0.0.0:8000
+installer: installer_clean wheel
+	cp deploy/installer/Makefile build/installer/
+
+installer_clean:
+	rm -rf dist
+	rm -rf build
+	mkdir -p build/installer
+
+wheel:
+	pip wheel --wheel-dir=build/wheel/wheel-dir webfolder
+	mv build/wheel/wheel-dir build/installer/wheel-dir
+	rm -rf build/wheel/
 
