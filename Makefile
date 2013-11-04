@@ -73,6 +73,8 @@ vagrant_install:
 
 installer: installer_clean wheel
 	cp deploy/installer/Makefile build/installer/
+	mv build/installer/ build/setup_$(PROJECT_NAME)_$(PROJECT_VERSION)
+	cd build; tar czf setup_$(PROJECT_NAME)_$(PROJECT_VERSION).tgz setup_$(PROJECT_NAME)_$(PROJECT_VERSION)/
 
 installer_clean:
 	rm -rf dist
@@ -80,7 +82,7 @@ installer_clean:
 	mkdir -p build/installer
 
 wheel:
-	pip wheel --wheel-dir=build/wheel/wheel-dir webfolder
+	pip wheel --wheel-dir=build/wheel/wheel-dir .
 	mv build/wheel/wheel-dir build/installer/wheel-dir
 	rm -rf build/wheel/
 

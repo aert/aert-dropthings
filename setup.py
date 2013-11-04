@@ -28,6 +28,7 @@ requires_base = [
     #'django-compressor==1.3',
     #'django-grappelli==2.4.6',
     'django-lineage==0.2.0',
+    'setuptools>=0.8',
 ]
 
 requires_dev = [
