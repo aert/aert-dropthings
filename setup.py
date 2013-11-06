@@ -51,7 +51,7 @@ extras_requires = {
 }
 
 setup(name='webfolder',
-      version='0.1a',
+      version='0.1.0',
       description='Save and share files from this web app.',
       long_description=README + '\n\n' + CHANGES,
       classifiers=[

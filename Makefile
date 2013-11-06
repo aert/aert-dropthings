@@ -73,6 +73,7 @@ vagrant_install:
 
 installer: installer_clean wheel
 	cp deploy/installer/Makefile build/installer/
+	cp deploy/installer/requirements.txt build/installer/
 	mv build/installer/ build/setup_$(PROJECT_NAME)_$(PROJECT_VERSION)
 	cd build; tar czf setup_$(PROJECT_NAME)_$(PROJECT_VERSION).tgz setup_$(PROJECT_NAME)_$(PROJECT_VERSION)/
 

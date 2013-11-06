@@ -14,12 +14,13 @@ install_deps:
 	sudo apt-get install python-virtualenv python-pip
 
 install_env:
-	pip install --upgrade pip
 	mkdir -p $(VENV_PATH)
 	virtualenv -p python2.7 --no-site-packages $(VENV_PATH)
+	$(VENV_PATH)/bin/pip install --upgrade pip
+	$(VENV_PATH)/bin/pip install -I "setuptools>=0.8" "wheel>=0.22"
 
 install_wheel:
-	$(VENV_PATH)/bin/pip install --use-wheel --no-index --find-links=wheel-dir/ webfolder
+	$(VENV_PATH)/bin/pip install --use-wheel --no-index --find-links=wheel-dir/ -r requirements.txt
 
 install_links:
 	@if [ -e $(LINK_PATH) ] ; then mv $(LINK_PATH) $(LINK_BKP_PATH); fi;
