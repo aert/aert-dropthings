@@ -2,6 +2,7 @@
 #from fabric import colors
 
 import vagrant
-#import django
+import deploy
+
 #import dev
 #import build

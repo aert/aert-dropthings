@@ -1,8 +1,5 @@
-from fabric.api import task, local, lcd, sudo, put
+from fabric.api import task, local, lcd, sudo, env
 from fabric import colors
-
-
-PATH_TMP = "/opt/aert/tmp"
 
 
 @task
@@ -25,9 +22,19 @@ def _destroy_up():
 
 
 @task
-def deploy_installer():
-    """ Deploy installer """
+def h_vagrant():
+    "Use Vagrant for testing"
+    env.user = 'vagrant'
+    env.hosts = ['192.168.111.222']
 
-    with lcd('../..'):
-        sudo("mkdir -p {}".format(PATH_TMP))
-        put("build/*.tgz", PATH_TMP)
+    # retrieve the IdentityFile:
+    result = local('vagrant ssh-config | grep IdentityFile', capture=True)
+    env.key_filename = result.split()[1].replace('"', '')  # parse IdentityFile
+
+
+@task
+def setup_ssh():
+    "Set up vagrant"
+    sudo("echo 'root:root' | chpasswd")
+    sudo("apt-get update")
+    local("sshpass -p root ssh-copy-id root@192.168.111.222")

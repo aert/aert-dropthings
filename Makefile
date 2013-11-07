@@ -4,13 +4,14 @@ PROJECT_VERSION:=$(shell cat RELEASE-VERSION)
 PROJECT_FILENAME=$(PROJECT_NAME)_$(PROJECT_VERSION)
 SRC_PATH=webfolder
 VAGRANT_PATH=deploy
+VAGRANT_IP=192.168.111.222
 FABRIC_PATH=deploy/fabric
 
 WWW_PATH=/opt/aert/www-webfolder
 VENV_PATH=/opt/aert/envs/aert-webfolder
 
 ##  Installation Paths:
-PREFIX?=/usr
+#PREFIX?=/usr
 
 
 ## default target, it's what to do if you typed "make" without target
@@ -53,6 +54,7 @@ dev_runserver:
 
 vagrant_setup:
 	cd $(FABRIC_PATH); fab vagrant.setup
+	cd $(FABRIC_PATH); fab vagrant.h_vagrant vagrant.setup_ssh
 
 vagrant_ssh:
 	cd $(VAGRANT_PATH); vagrant up; vagrant ssh
@@ -63,11 +65,8 @@ vagrant_reload:
 vagrant_destroy:
 	cd $(VAGRANT_PATH); vagrant destroy
 
-vagrant_install:
-	mkdir -p $(WWW_PATH)/{public,upload}
-	cp deploy/start_webfolder.sh $(WWW_PATH)/
-	cp etc/config_release.ini $(WWW_PATH)/config.ini
-	source $(VENV_PATH)/bin/activate;export AERT_WEBFOLDER_CONFIG=$(WWW_PATH)/config.ini; aert-webfolder collectstatic
+vagrant_deploy:
+	cd $(VAGRANT_PATH); fab -H root@$(VAGRANT_IP) deploy.push
 
 # DEPLOYMENT
 # ##########
