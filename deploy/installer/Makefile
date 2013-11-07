@@ -34,4 +34,8 @@ configure_copy_files:
 	@if [ -e $(LINK_BKP_PATH)/etc/config.ini ] ; then cp -f $(LINK_BKP_PATH)/etc/config.ini $(DEST_PATH)/etc/config.ini; fi;
 
 test:
-	uwsgi --emperor $(LINK_PATH)/etc/uwsgi/vassals/
+	sudo apt-get install nginx
+	sudo uwsgi --emperor $(LINK_PATH)/etc/uwsgi/vassals/
+	sudo cp -f etc/uwsgi/nginx-site-example.conf /etc/nginx/sites-available/webfolder-test.app
+	sudo ln -s /etc/nginx/sites-available/webfolder-test.app /etc/nginx/sites-enabled/webfolder-test.app
+	sudo service nginx reload
