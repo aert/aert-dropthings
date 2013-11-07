@@ -35,6 +35,7 @@ requires_dev = [
     'bpython==0.12',
     'django-debug-toolbar==0.10.2',
     # Build tools
+    'pip>=1.3.1',
     'wheel==0.22.0',
     'pip-tools==0.3.4',
     'flake8==2.1.0',
