@@ -1,6 +1,7 @@
 
 PROJECT_NAME=aert-webfolder
-PROJECT_VERSION=0.1.0
+PROJECT_VERSION:=$(shell cat RELEASE-VERSION)
+PROJECT_FILENAME=$(PROJECT_NAME)_$(PROJECT_VERSION)
 SRC_PATH=webfolder
 VAGRANT_PATH=deploy
 FABRIC_PATH=deploy/fabric
@@ -71,12 +72,7 @@ vagrant_install:
 # DEPLOYMENT
 # ##########
 
-installer: installer_clean wheel
-	cp deploy/installer/Makefile build/installer/
-	cp deploy/installer/requirements.txt build/installer/
-	cp -R etc/ build/installer/
-	mv build/installer/ build/setup_$(PROJECT_NAME)_$(PROJECT_VERSION)
-	cd build; tar czf setup_$(PROJECT_NAME)_$(PROJECT_VERSION).tgz setup_$(PROJECT_NAME)_$(PROJECT_VERSION)/
+installer: installer_clean wheel installer_archive
 
 installer_clean:
 	rm -rf dist
@@ -87,4 +83,11 @@ wheel:
 	pip wheel --wheel-dir=build/wheel/wheel-dir .
 	mv build/wheel/wheel-dir build/installer/wheel-dir
 	rm -rf build/wheel/
+
+installer_archive:
+	cp deploy/installer/Makefile build/installer/
+	cp deploy/installer/requirements.txt build/installer/
+	cp -R etc/ build/installer/
+	mv build/installer/ build/setup_$(PROJECT_FILENAME)
+	cd build; tar -czf setup_$(PROJECT_FILENAME).tgz setup_$(PROJECT_FILENAME)/
 

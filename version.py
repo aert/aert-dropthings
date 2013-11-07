@@ -7,7 +7,7 @@
 # scheme that setuptools uses.  If “git describe” returns an error
 # (most likely because we're in an unpacked copy of a release tarball,
 # rather than in a git working copy), then we fall back on reading the
-# contents of the VERSION file.
+# contents of the RELEASE-VERSION file.
 #
 # To use this script, simply import it your setup.py file, and use the
 # results of get_git_version() as your package version:
@@ -21,15 +21,15 @@
 #     .
 # )
 #
-# This will automatically update the VERSION file, if
-# necessary.  Note that the VERSION file should *not* be
+# This will automatically update the RELEASE-VERSION file, if
+# necessary.  Note that the RELEASE-VERSION file should *not* be
 # checked into git; please add it to your top-level .gitignore file.
 #
-# You'll probably want to distribute the VERSION file in your
+# You'll probably want to distribute the RELEASE-VERSION file in your
 # sdist tarballs; to do this, just create a MANIFEST.in file that
 # contains the following line:
 #
-#   include VERSION
+#   include RELEASE-VERSION
 
 __all__ = ("get_git_version")
 
@@ -50,7 +50,7 @@ def call_git_describe(abbrev=4):
 
 def read_release_version():
     try:
-        f = open("VERSION", "r")
+        f = open("RELEASE-VERSION", "r")
 
         try:
             version = f.readlines()[0]
@@ -64,13 +64,13 @@ def read_release_version():
 
 
 def write_release_version(version):
-    f = open("VERSION", "w")
+    f = open("RELEASE-VERSION", "w")
     f.write("%s\n" % version)
     f.close()
 
 
 def get_git_version(abbrev=4):
-    # Read in the version that's currently in VERSION.
+    # Read in the version that's currently in RELEASE-VERSION.
 
     release_version = read_release_version()
 
@@ -82,7 +82,7 @@ def get_git_version(abbrev=4):
     version = pep386adapt(version)
 
     # If that doesn't work, fall back on the value that's in
-    # VERSION.
+    # RELEASE-VERSION.
 
     if version is None:
         version = release_version
@@ -93,7 +93,7 @@ def get_git_version(abbrev=4):
         raise ValueError("Cannot find the version number!")
 
     # If the current version is different from what's in the
-    # VERSION file, update the file to be current.
+    # RELEASE-VERSION file, update the file to be current.
 
     if version != release_version:
         write_release_version(version)
@@ -109,7 +109,7 @@ def pep386adapt(version):
         parts = version.split('-')
         parts[-2] = 'post'+parts[-2]
         version = '.'.join(parts[:-1])
-        return version
+    return version
 
 
 if __name__ == "__main__":

@@ -1,6 +1,7 @@
 import os
-
 from setuptools import setup, find_packages
+
+from version import get_git_version
 
 here = os.path.abspath(os.path.dirname(__file__))
 with open(os.path.join(here, 'README.rst')) as f:
@@ -52,7 +53,7 @@ extras_requires = {
 }
 
 setup(name='webfolder',
-      version='0.1.0',
+      version=get_git_version(),
       description='Save and share files from this web app.',
       long_description=README + '\n\n' + CHANGES,
       classifiers=[
