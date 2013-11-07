@@ -24,6 +24,6 @@ install_wheel:
 
 install_links:
 	@if [ -e $(LINK_PATH) ] ; then mv $(LINK_PATH) $(LINK_BKP_PATH); fi;
-	ln -s DEST_PATH/ LINK_PATH
+	ln -s $(DEST_PATH) $(LINK_PATH)
 
 post-install:
