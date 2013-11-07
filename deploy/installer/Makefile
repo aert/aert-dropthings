@@ -1,6 +1,6 @@
 
 PROJECT_NAME=aert-webfolder
-PROJECT_VERSION=1.0-dev
+PROJECT_VERSION=0.1.0
 
 DEST_PATH=/opt/aert/webfolder_$(PROJECT_VERSION)
 VENV_PATH=$(DEST_PATH)/env
@@ -29,13 +29,15 @@ install_links:
 post-install: configure_copy_files 
 
 configure_copy_files:
-	mkdir $(DEST_PATH)/{assets,uploads,logs}
+	mkdir -p $(DEST_PATH)/assets
+	mkdir -p $(DEST_PATH)/uploads
+	mkdir -p $(DEST_PATH)/logs
 	cp -R etc/ $(DEST_PATH)/etc
 	@if [ -e $(LINK_BKP_PATH)/etc/config.ini ] ; then cp -f $(LINK_BKP_PATH)/etc/config.ini $(DEST_PATH)/etc/config.ini; fi;
 
 test:
 	sudo apt-get install nginx
-	sudo uwsgi --emperor $(LINK_PATH)/etc/uwsgi/vassals/
+	sudo $(VENV_PATH)/bin/uwsgi --emperor $(LINK_PATH)/etc/uwsgi/vassals/
 	sudo cp -f etc/uwsgi/nginx-site-example.conf /etc/nginx/sites-available/webfolder-test.app
 	sudo ln -s /etc/nginx/sites-available/webfolder-test.app /etc/nginx/sites-enabled/webfolder-test.app
 	sudo service nginx reload
