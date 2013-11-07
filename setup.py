@@ -19,12 +19,12 @@ def gen_data_files(*dirs):
 
 
 requires_base = [
-    'Django==1.5.4',
-    'django-braces==1.2.2',
-    'django-model-utils==1.5.0',
+    'Django==1.6',
+    #'django-braces==1.2.2',
+    #'django-model-utils==1.5.0',
     'South==0.8.2',
     'psycopg2==2.5.1',
-    'gunicorn==18.0',
+    'uWSGI==1.9.18.2',
     #'django-compressor==1.3',
     #'django-grappelli==2.4.6',
     'django-lineage==0.2.0',
@@ -32,12 +32,12 @@ requires_base = [
 ]
 
 requires_dev = [
-    'bpython',
-    'django-debug-toolbar==0.9.4',
+    'bpython==0.12',
+    'django-debug-toolbar==0.10.2',
     # Build tools
     'wheel==0.22.0',
     'pip-tools==0.3.4',
-    'flake8==2.0',
+    'flake8==2.1.0',
     # Deploy tools
     #'ansible==1.3.3',
     'Fabric==1.8.0',

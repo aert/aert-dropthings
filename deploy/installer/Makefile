@@ -26,4 +26,12 @@ install_links:
 	@if [ -e $(LINK_PATH) ] ; then mv $(LINK_PATH) $(LINK_BKP_PATH); fi;
 	ln -s $(DEST_PATH) $(LINK_PATH)
 
-post-install:
+post-install: configure_copy_files 
+
+configure_copy_files:
+	mkdir $(DEST_PATH)/{assets,uploads,logs}
+	cp -R etc/ $(DEST_PATH)/etc
+	@if [ -e $(LINK_BKP_PATH)/etc/config.ini ] ; then cp -f $(LINK_BKP_PATH)/etc/config.ini $(DEST_PATH)/etc/config.ini; fi;
+
+test:
+	uwsgi --emperor $(LINK_PATH)/etc/uwsgi/vassals/

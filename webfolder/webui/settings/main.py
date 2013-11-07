@@ -3,6 +3,8 @@ from ConfigParser import RawConfigParser
 
 config = RawConfigParser()
 config_file = os.environ['AERT_WEBFOLDER_CONFIG']
+if not config_file:
+    raise Exception("Not defined: AERT_WEBFOLDER_CONFIG")
 config.read(config_file)
 
 DEVELOP = config.getboolean('main', 'DEVELOP')
