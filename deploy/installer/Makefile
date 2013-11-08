@@ -37,7 +37,7 @@ configure_copy_files:
 
 test:
 	sudo apt-get install nginx
-	sudo $(VENV_PATH)/bin/uwsgi --emperor $(LINK_PATH)/etc/uwsgi/vassals/
+	sudo $(DEST_PATH)/etc/start_gunicorn.sh
 	sudo cp -f etc/uwsgi/nginx-site-example.conf /etc/nginx/sites-available/webfolder-test.app
 	sudo ln -s /etc/nginx/sites-available/webfolder-test.app /etc/nginx/sites-enabled/webfolder-test.app
 	sudo service nginx reload
