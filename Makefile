@@ -84,8 +84,8 @@ wheel:
 	rm -rf build/wheel/
 
 installer_archive:
-	sed -i 's/__VERSION__/$(PROJECT_VERSION)/g' deploy/installer/Makefile
 	cp deploy/installer/Makefile build/installer/
+	sed -i 's/__VERSION__/$(PROJECT_VERSION)/g' build/installer/Makefile
 	cp deploy/installer/requirements.txt build/installer/
 	cp -R etc/ build/installer/
 	mv build/installer/ build/setup_$(PROJECT_FILENAME)
