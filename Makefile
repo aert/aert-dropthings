@@ -1,6 +1,6 @@
 
 PROJECT_NAME=aert-webfolder
-PROJECT_VERSION:=$(shell cat RELEASE-VERSION)
+PROJECT_VERSION:=$(shell python version.py)
 PROJECT_FILENAME=$(PROJECT_NAME)_$(PROJECT_VERSION)
 SRC_PATH=webfolder
 VAGRANT_PATH=deploy
