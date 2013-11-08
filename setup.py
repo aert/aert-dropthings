@@ -20,7 +20,7 @@ def gen_data_files(*dirs):
 
 
 requires_base = [
-    'Django==1.6',
+    'Django==1.5.4',
     #'django-braces==1.2.2',
     #'django-model-utils==1.5.0',
     'South==0.8.2',
