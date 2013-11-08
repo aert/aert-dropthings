@@ -79,11 +79,13 @@ installer_clean:
 	mkdir -p build/installer
 
 wheel:
+	python setup.py dev
 	pip wheel --wheel-dir=build/wheel/wheel-dir .
 	mv build/wheel/wheel-dir build/installer/wheel-dir
 	rm -rf build/wheel/
 
 installer_archive:
+	sed -i 's/__VERSION__/$(PROJECT_VERSION)/g' deploy/installer/Makefile
 	cp deploy/installer/Makefile build/installer/
 	cp deploy/installer/requirements.txt build/installer/
 	cp -R etc/ build/installer/

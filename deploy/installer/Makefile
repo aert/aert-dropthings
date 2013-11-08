@@ -1,9 +1,9 @@
 
 PROJECT_NAME=aert-webfolder
-PROJECT_VERSION:=$(shell cat ../../RELEASE-VERSION)
+PROJECT_VERSION=0.1.0.post2
 PROJECT_FILENAME=$(PROJECT_NAME)_$(PROJECT_VERSION)
 
-DEST_PATH=$(PROJECT_FILENAME)
+DEST_PATH=/opt/aert/webfolder_$(PROJECT_VERSION)
 VENV_PATH=$(DEST_PATH)/env
 LINK_PATH=/opt/aert/webfolder
 LINK_BKP_PATH=/opt/aert/webfolder.prev
@@ -24,6 +24,7 @@ install_wheel:
 	$(VENV_PATH)/bin/pip install --use-wheel --no-index --find-links=wheel-dir/ -r requirements.txt
 
 install_links:
+	@if [ -e $(LINK_BKP_PATH) ] ; then rm -f $(LINK_BKP_PATH); fi;
 	@if [ -e $(LINK_PATH) ] ; then mv $(LINK_PATH) $(LINK_BKP_PATH); fi;
 	ln -s $(DEST_PATH) $(LINK_PATH)
 
