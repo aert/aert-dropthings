@@ -66,7 +66,7 @@ vagrant_destroy:
 	cd $(VAGRANT_PATH); vagrant destroy
 
 vagrant_deploy:
-	cd $(VAGRANT_PATH); fab -H root@$(VAGRANT_IP) deploy.push
+	cd $(FABRIC_PATH); fab -H root@$(VAGRANT_IP) deploy.push
 
 # DEPLOYMENT
 # ##########

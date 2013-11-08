@@ -1,11 +1,11 @@
-from os.path import dirname, abspath
+from os.path import dirname, abspath, join
 from fabric.api import task, lcd, sudo, put, cd
 
 
 REMOTE_TMP = "/opt/aert/tmp"
-DJANGO_ROOT = dirname(dirname(abspath(__file__)))
+DJANGO_ROOT = dirname(dirname(dirname(abspath(__file__))))
 
-with open("RELEASE-VERSION", "r") as f:
+with open(join(DJANGO_ROOT, "RELEASE-VERSION"), "r") as f:
     VERSION = f.readlines()[0]
 
 
