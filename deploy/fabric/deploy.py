@@ -25,5 +25,5 @@ def push():
         sudo("tar zxf {}".format(archive_name))
 
     # install
-    with cd(join(REMOTE_TMP, splitext(archive_name))):
+    with cd(join(REMOTE_TMP, splitext(archive_name)[0])):
         sudo("make install")
