@@ -43,7 +43,7 @@ develop:
 dev_setup_initial:
 	sudo apt-get install python-dev libpq-dev
 	# For wheel
-	pip install --upgrade pip
+	pip install --upgrade pip setuptools
 
 dev_runserver:
 	export AERT_WEBFOLDER_CONFIG=`pwd`/etc/config_develop.ini; aert-webfolder runserver 0.0.0.0:8000
