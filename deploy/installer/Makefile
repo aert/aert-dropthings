@@ -24,8 +24,8 @@ install_wheel:
 	$(VENV_PATH)/bin/pip install --use-wheel --no-index --find-links=wheel-dir/ -r requirements.txt
 
 install_links:
-	@if [ -e $(LINK_BKP_PATH) ] ; then rm -f $(LINK_BKP_PATH); fi;
-	@if [ -e $(LINK_PATH) ] ; then mv $(LINK_PATH) $(LINK_BKP_PATH); fi;
+	@if [ -f $(LINK_BKP_PATH) ] ; then rm -f $(LINK_BKP_PATH); fi;
+	@if [ -f $(LINK_PATH) ] ; then mv $(LINK_PATH) $(LINK_BKP_PATH); fi;
 	ln -s $(DEST_PATH) $(LINK_PATH)
 
 post-install: configure_copy_files 
@@ -35,7 +35,7 @@ configure_copy_files:
 	mkdir -p $(DEST_PATH)/uploads
 	mkdir -p $(DEST_PATH)/logs
 	cp -R etc/ $(DEST_PATH)/
-	@if [ -e $(LINK_BKP_PATH)/etc/config.ini ] ; then cp -f $(LINK_BKP_PATH)/etc/config.ini $(DEST_PATH)/etc/config.ini; fi;
+	@if [ -f $(LINK_BKP_PATH)/etc/config.ini ] ; then cp -f $(LINK_BKP_PATH)/etc/config.ini $(DEST_PATH)/etc/config.ini; fi;
 
 test:
 	sudo apt-get install nginx
