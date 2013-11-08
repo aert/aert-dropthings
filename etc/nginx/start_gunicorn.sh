@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-LOGFILE=/opt/aert/webfolder/log/aert-webfolder.log
+LOGFILE=/opt/aert/webfolder/log/gunicorn.log
 LOGDIR=$(dirname $LOGFILE)
 NUM_WORKERS=3
 # user/group to run as
