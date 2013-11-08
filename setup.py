@@ -25,7 +25,7 @@ requires_base = [
     #'django-model-utils==1.5.0',
     'South==0.8.2',
     'psycopg2==2.5.1',
-    'gunicorn====18.0',
+    'gunicorn==18.0',
     #'django-compressor==1.3',
     #'django-grappelli==2.4.6',
     'django-lineage==0.2.0',
