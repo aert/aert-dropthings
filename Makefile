@@ -46,7 +46,7 @@ dev_setup_initial:
 	pip install --upgrade pip setuptools
 
 dev_runserver:
-	export AERT_WEBFOLDER_CONFIG=`pwd`/etc/config_develop.ini; aert-webfolder runserver 0.0.0.0:8000
+	export APP_CONFIG_WEBFOLDER=`pwd`/webfolder/etc/config_develop.ini; aert-webfolder runserver 0.0.0.0:8000
 
 
 # VAGRANT
@@ -87,7 +87,6 @@ installer_archive:
 	cp deploy/installer/Makefile build/installer/
 	sed -i 's/__VERSION__/$(PROJECT_VERSION)/g' build/installer/Makefile
 	cp deploy/installer/requirements.txt build/installer/
-	cp -R etc/ build/installer/
 	mv build/installer/ build/setup_$(PROJECT_FILENAME)
 	cd build; tar -czf setup_$(PROJECT_FILENAME).tgz setup_$(PROJECT_FILENAME)/
 

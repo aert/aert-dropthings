@@ -1,12 +1,13 @@
+PREFIX?=/opt/aert
 
 PROJECT_NAME=aert-webfolder
 PROJECT_VERSION=__VERSION__
 PROJECT_FILENAME=$(PROJECT_NAME)_$(PROJECT_VERSION)
 
-DEST_PATH=/opt/aert/webfolder_$(PROJECT_VERSION)
+DEST_PATH=$(PREFIX)/webfolder_$(PROJECT_VERSION)
 VENV_PATH=$(DEST_PATH)/env
-LINK_PATH=/opt/aert/webfolder
-LINK_BKP_PATH=/opt/aert/webfolder.prev
+LINK_PATH=$(PREFIX)/webfolder
+LINK_BKP_PATH=$(PREFIX)/webfolder.prev
 
 
 install: install_deps install_env install_wheel install_links post-install
@@ -27,18 +28,5 @@ install_links:
 	if [ -f $(LINK_PATH) ] ; then mv $(LINK_PATH) $(LINK_BKP_PATH); fi;
 	ln -s $(DEST_PATH) $(LINK_PATH)
 
-post-install: configure_copy_files 
+post-install: 
 
-configure_copy_files:
-	mkdir -p $(DEST_PATH)/assets
-	mkdir -p $(DEST_PATH)/uploads
-	mkdir -p $(DEST_PATH)/log
-	cp -R etc/ $(DEST_PATH)/
-	if [ -f $(LINK_BKP_PATH)/etc/config.ini ] ; then cp -f $(LINK_BKP_PATH)/etc/config.ini $(DEST_PATH)/etc/config.ini; fi;
-
-test:
-	sudo apt-get install nginx
-	sudo $(DEST_PATH)/etc/nginx/start_gunicorn.sh
-	sudo cp -f etc/nginx/nginx-site-example.conf /etc/nginx/sites-available/webfolder-test.app
-	sudo ln -s /etc/nginx/sites-available/webfolder-test.app /etc/nginx/sites-enabled/webfolder-test.app
-	sudo service nginx reload
