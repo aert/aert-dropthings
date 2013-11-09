@@ -33,3 +33,4 @@
 # This project
 /public/assets/
 /RELEASE-VERSION
+/deploy/vagrant_ansible_inventory_default

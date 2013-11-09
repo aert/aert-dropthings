@@ -40,7 +40,7 @@ requires_dev = [
     'pip-tools==0.3.4',
     'flake8==2.1.0',
     # Deploy tools
-    #'ansible==1.3.3',
+    'ansible==1.3.4',
     'Fabric==1.8.0',
     #'fabtools==0.15.0',
 ]

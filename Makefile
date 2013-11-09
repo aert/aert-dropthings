@@ -38,7 +38,7 @@ clean_all:
 
 ## init dev env
 develop:
-	python setup.py dev
+	pip install -e .[testing]
 
 dev_setup_initial:
 	sudo apt-get install python-dev libpq-dev

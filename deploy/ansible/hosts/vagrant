@@ -1,7 +1,0 @@
-[webservers]
-#vagrant.aert-webfolder.org
-root@192.168.111.222
-
-[databases]
-#vagrant.aert-webfolder.org
-root@192.168.111.222
