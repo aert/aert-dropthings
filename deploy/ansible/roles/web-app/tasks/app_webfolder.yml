@@ -1,41 +1,62 @@
 ---
 
 # Install requirements
-
 - name: app_webfolder-apt
   apt: pkg=$item state=installed
   with_items:
     - python-virtualenv
     - python-pip
-  tags: app
 
 
-# Create VirtualEnv
+# Create Dirs
+- name: app-dirs
+  file: path=$item state=directory owner=www-data group=www-data
+  with_items:
+    - "$prefix"
+    - "$tmp_path"
 
-#TODO
+# Upload & Install Installer
+- name: app-installer-upload
+  copy: src=$installer_tgz dest=${tmp_path} owner=www-data group=www-data
+
+- name: app-installer-untar
+  shell: cd ${tmp_path} && tar zxf {{installer_tgz|basename}}
+
+- name: app-installer-install
+  shell: cd ${tmp_path}/{{installer_dirname}} && make install --prefix=/opt/aert
+
+- name: app-installer-clean
+  file: path=${tmp_path}/{{installer_dirname}} state=absent
+
+# Config Dirs 
+- name: app-dirs-app
+  file: path=$item state=directory owner=www-data group=www-data
+  with_items:
+    - "$app_home"
+    - "$app_env"
+    - "$app_assets"
+    - "$app_uploads"
+    - "$app_log"
+
+- name: app-installer-install
+  shell: chown -R www-data:www-data ${app_home}
 
 # Install wheel requirements
 
 #TODO
 
-# Get Git sources
+# Init folder structure
 
-#- name: /srv/www/apps
-#  file: path=/srv/www/apps state=directory owner=www-data group=www-data
-#
-#- name: app_webfolder_git
-#  git: repo=https://github.com/aert/aert-webfolder.git dest=/srv/www/apps/aert-webfolder.git update=yes force=yes
 
 # Migrate db
 
 #TODO
 
 # Configure gunicorn
-
-#- name: app_webfolder_gunicorn-launcher
-#  template: src=start_gunicorn.sh.j2 dest=/etc/uwsgi/apps-available/webfolder.ini
+#- name: app-gunicorn
+#  template: src=start_gunicorn.sh.j2 dest=$app_home/start_gunicorn.sh
 #  notify:
-#    - restart uwsgi
+#    - restart nginx
 
 #- name: app_webfolder_uwsgi-enable
 #  file: src=/etc/uwsgi/apps-available/webfolder.ini dest=/etc/uwsgi/apps-enabled/webfolder.ini state=link

@@ -5,7 +5,6 @@ PROJECT_FILENAME=$(PROJECT_NAME)_$(PROJECT_VERSION)
 SRC_PATH=webfolder
 VAGRANT_PATH=deploy
 VAGRANT_IP=192.168.111.222
-FABRIC_PATH=deploy/fabric
 
 WWW_PATH=/opt/aert/www-webfolder
 VENV_PATH=/opt/aert/envs/aert-webfolder
@@ -53,8 +52,7 @@ dev_runserver:
 # #######
 
 vagrant_setup:
-	cd $(FABRIC_PATH); fab vagrant.setup
-	cd $(FABRIC_PATH); fab vagrant.h_vagrant vagrant.setup_ssh
+	cd $(VAGRANT_PATH); vagrant up
 
 vagrant_ssh:
 	cd $(VAGRANT_PATH); vagrant up; vagrant ssh
@@ -65,8 +63,8 @@ vagrant_reload:
 vagrant_destroy:
 	cd $(VAGRANT_PATH); vagrant destroy
 
-vagrant_deploy:
-	cd $(FABRIC_PATH); fab -H root@$(VAGRANT_IP) deploy.push
+vagrant_provision: installer
+	cd $(VAGRANT_PATH); vagrant provision
 
 # DEPLOYMENT
 # ##########

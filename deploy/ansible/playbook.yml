@@ -5,12 +5,15 @@
   gather_facts: False
   sudo: True
   vars:
-    app_home: /opt/aert
-    app_env: 
-    app_assets:
-    app_uploads:
-    app_logs:
-
+    prefix      : /opt/aert
+    app_home    : "${prefix}/webfolder"
+    app_env     : "${app_home}/env"
+    app_assets  : "${app_home}/assets"
+    app_uploads : "${app_home}/uploads"
+    app_log     : "${app_home}/log"
+    tmp_path    : "${prefix}/tmp"
+    installer_dirname : "{{ installer_local | basename }}"
+    installer_tgz : "{{ installer_local | mandatory }}.tgz"
   roles:
     - common
     - web-app

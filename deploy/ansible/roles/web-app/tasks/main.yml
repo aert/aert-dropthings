@@ -24,12 +24,6 @@
 - name: nginx-/etc/nginx/sites-enabled
   file: path=/etc/nginx/sites-enabled state=directory owner=root mode=0755
 
-# Configure
-
-#- name: nginx-config
-#  copy: src=nginx.conf /etc/nginx/nginx.conf
-#  notify:
-#    - restart nginx
  
 
 - include: app_webfolder.yml tags=app
