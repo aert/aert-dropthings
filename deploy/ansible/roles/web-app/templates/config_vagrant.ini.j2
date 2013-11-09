@@ -1,15 +1,15 @@
 [main]
 DEVELOP = false
 ALLOWED_HOSTS = 127.0.0.1
-STATIC_ROOT = /opt/aert/www-webfolder/assets
-STATIC_URL = http://127.0.0.1/static/
+STATIC_ROOT = 'staticfiles'
+STATIC_URL = '/static/'
 MEDIA_ROOT = /opt/aert/www-webfolder/uploads
 MEDIA_URL = http://127.0.0.1/media/
 
 [database]
 DATABASE_USER = bla
 DATABASE_PASSWORD = XXXXXXXX
-DATABASE_HOST = 127.0.0.1
+DATABASE_HOST = dev
 DATABASE_PORT =
 DATABASE_ENGINE = mysql
 DATABASE_NAME = blo

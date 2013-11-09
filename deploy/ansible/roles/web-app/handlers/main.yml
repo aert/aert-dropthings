@@ -3,7 +3,6 @@
 - name: restart nginx
   service: name=nginx state=restarted
 
-#- name: restart uwsgi
-#  service: name=nginx state=restarted
-#  service: name=uwsgi state=restarted
+- name: restart supervisor
+  shell: supervisorctl reread && supervisorctl update && supervisorctl restart webfolder
 

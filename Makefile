@@ -51,7 +51,7 @@ dev_runserver:
 # VAGRANT
 # #######
 
-vagrant_setup:
+vagrant_setup: installer
 	cd $(VAGRANT_PATH); vagrant up
 
 vagrant_ssh:

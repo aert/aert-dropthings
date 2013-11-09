@@ -3,7 +3,7 @@
 from .base import *
 
 
-INSTALLED_APPS += ('gunicorn',)
+INSTALLED_APPS += ('gunicorn', 'dj-static')
 
 ########## EMAIL CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#email-backend

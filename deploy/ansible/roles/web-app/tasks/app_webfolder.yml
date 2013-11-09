@@ -30,31 +30,32 @@
 
 # Config Dirs 
 - name: app-dirs-app
-  file: path=$item state=directory owner=www-data group=www-data
+  file: path=$item state=directory owner=www-data group=www-data  recurse=yes
   with_items:
+    - "$app_env"
     - "$app_assets"
     - "$app_uploads"
     - "$app_log"
-
-- name: app-installer-install
-  shell: chown -R www-data:www-data ${app_home}
-
-# Install wheel requirements
-
-#TODO
-
-# Init folder structure
-
 
 # Migrate db
 
 #TODO
 
-# Configure gunicorn
-#- name: app-gunicorn
-#  template: src=start_gunicorn.sh.j2 dest=$app_home/start_gunicorn.sh
-#  notify:
-#    - restart nginx
+# Configure App
+- name: app-config-file
+  template: src=config_vagrant.ini.j2 dest=$app_home/config.ini owner=www-data group=www-data
 
-#- name: app_webfolder_uwsgi-enable
-#  file: src=/etc/uwsgi/apps-available/webfolder.ini dest=/etc/uwsgi/apps-enabled/webfolder.ini state=link
+# Configure gunicorn
+- name: app-gunicorn
+  template: src=start_gunicorn.sh.j2 dest=$app_home/start_gunicorn.sh mode=0751 owner=www-data group=www-data
+
+# Nginx
+- name: app-nginx-config
+  template: src=nginx_webfolder.app.j2 dest=/etc/nginx/sites-available/webfolder.app owner=www-data group=www-data
+
+- name: app-nginx-enable
+  file: src=/etc/nginx/sites-available/webfolder.app dest=/etc/nginx/sites-enabled/webfolder.app state=link owner=www-data group=www-data
+
+- name: app-perms
+  shell: chown -R www-data:www-data ${app_home}
+
