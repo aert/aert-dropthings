@@ -3,6 +3,13 @@
 
 - hosts: all
   gather_facts: False
+  sudo: True
+  vars:
+    app_home: /opt/aert
+    app_env: 
+    app_assets:
+    app_uploads:
+    app_logs:
 
   roles:
     - common
