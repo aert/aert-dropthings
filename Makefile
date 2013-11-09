@@ -63,7 +63,9 @@ vagrant_reload:
 vagrant_destroy:
 	cd $(VAGRANT_PATH); vagrant destroy
 
-vagrant_provision: installer
+vagrant_provision: installer vagrant_reprovision
+
+vagrant_reprovision: 
 	cd $(VAGRANT_PATH); vagrant provision
 
 # DEPLOYMENT

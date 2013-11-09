@@ -23,7 +23,7 @@
   shell: cd ${tmp_path} && tar zxf {{installer_tgz|basename}}
 
 - name: app-installer-install
-  shell: cd ${tmp_path}/{{installer_dirname}} && make install --prefix=/opt/aert
+  shell: cd ${tmp_path}/{{installer_dirname}} && make install PREFIX=/opt/aert
 
 - name: app-installer-clean
   file: path=${tmp_path}/{{installer_dirname}} state=absent
@@ -32,8 +32,6 @@
 - name: app-dirs-app
   file: path=$item state=directory owner=www-data group=www-data
   with_items:
-    - "$app_home"
-    - "$app_env"
     - "$app_assets"
     - "$app_uploads"
     - "$app_log"
