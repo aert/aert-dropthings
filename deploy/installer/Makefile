@@ -12,7 +12,6 @@ LINK_BKP_PATH=/opt/aert/webfolder.prev
 install: install_deps install_env install_wheel install_links post-install
 
 install_deps:
-	sudo apt-get install python-virtualenv python-pip
 
 install_env:
 	mkdir -p $(VENV_PATH)
