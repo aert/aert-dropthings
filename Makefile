@@ -71,6 +71,13 @@ vagrant_reprovision:
 # DEPLOYMENT
 # ##########
 
+tag:
+	@while [ -z "$$NEW_TAG" ]; do \
+			read -r -p "New tag: " NEW_TAG; \
+	done; \
+	git tag -a $$NEW_TAG -m "Created tag: $$NEW_TAG"; \
+	git push --tags;
+
 installer: installer_clean wheel installer_archive
 
 installer_clean:
