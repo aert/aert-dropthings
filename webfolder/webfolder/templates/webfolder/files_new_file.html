@@ -29,13 +29,13 @@ New File {{ block.super }}
     <!-- ACTIONS -->
     <center>
         <div class="actions">
+            <a href="{% url "files" %}">
+                <div class="ui button">Cancel</div>
+            </a>
             <div class="ui labeled blue icon button">
                 <i class="save icon"></i>
                 Save
             </div>
-            <a href="{% url "files" %}">
-                <div class="ui button">Cancel</div>
-            </a>
         </div>
     </center>
 </div>
