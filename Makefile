@@ -2,12 +2,7 @@
 PROJECT_NAME=aert-webfolder
 PROJECT_VERSION:=$(shell python version.py)
 PROJECT_FILENAME=$(PROJECT_NAME)_$(PROJECT_VERSION)
-SRC_PATH=webfolder
 VAGRANT_PATH=deploy
-VAGRANT_IP=192.168.111.222
-
-WWW_PATH=/opt/aert/www-webfolder
-VENV_PATH=/opt/aert/envs/aert-webfolder
 
 ##  Installation Paths:
 #PREFIX?=/usr
