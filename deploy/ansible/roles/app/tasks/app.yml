@@ -6,7 +6,11 @@
   with_items:
     - python-virtualenv
     - python-pip
+    - supervisor
 
+# Stop Supervisor
+- name: app-stop-supervisor
+  shell: supervisorctl stop webfolder
 
 # Create Dirs
 - name: app-dirs
@@ -23,7 +27,7 @@
   shell: cd ${tmp_path} && tar zxf {{installer_tgz|basename}}
 
 - name: app-installer-install
-  shell: cd ${tmp_path}/{{installer_dirname}} && make install PREFIX=/opt/aert
+  shell: cd ${tmp_path}/{{installer_dirname}} && make install PREFIX={{ prefix }}
 
 - name: app-installer-clean
   file: path=${tmp_path}/{{installer_dirname}} state=absent
@@ -48,13 +52,6 @@
 # Configure gunicorn
 - name: app-gunicorn
   template: src=start_gunicorn.sh.j2 dest=$app_home/start_gunicorn.sh mode=0751 owner=www-data group=www-data
-
-# Nginx
-- name: app-nginx-config
-  template: src=nginx_webfolder.app.j2 dest=/etc/nginx/sites-available/webfolder.app owner=www-data group=www-data
-
-- name: app-nginx-enable
-  file: src=/etc/nginx/sites-available/webfolder.app dest=/etc/nginx/sites-enabled/webfolder.app state=link owner=www-data group=www-data
 
 - name: app-perms
   shell: chown -R www-data:www-data ${app_home}

@@ -1,0 +1,10 @@
+---
+
+- name: app-nginx-available
+  template: src=site_webfolder.app.j2 dest=/etc/nginx/sites-available/webfolder.app owner=www-data group=www-data
+
+- name: app-nginx-enable
+  file: src=/etc/nginx/sites-available/webfolder.app dest=/etc/nginx/sites-enabled/webfolder.app state=link owner=www-data group=www-data
+  notify:
+    - restart nginx
+ 

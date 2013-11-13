@@ -46,7 +46,9 @@ dev_runserver:
 # VAGRANT
 # #######
 
-vagrant: installer
+vagrant: vagrant_up vagrant_provision
+
+vagrant_up:
 	cd $(VAGRANT_PATH); vagrant up
 
 vagrant_ssh:
@@ -77,11 +79,11 @@ installer: installer_clean wheel installer_archive
 
 installer_clean:
 	rm -rf dist
-	rm -rf build
 	mkdir -p build/installer
+	rm -rf build/setup_*
 
 wheel:
-	pip wheel --wheel-dir=build/wheel/wheel-dir .
+	pip wheel --wheel-dir=build/wheel/wheel-dir . --download-cache ./build/pip_cache
 	mv build/wheel/wheel-dir build/installer/wheel-dir
 	rm -rf build/wheel/
 

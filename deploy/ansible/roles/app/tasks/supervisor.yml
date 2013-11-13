@@ -6,6 +6,10 @@
   with_items:
     - supervisor
 
+# Start Supervisor
+- name: supervisor-start
+  shell: supervisorctl start webfolder
+
 # Configure supervisor
 - name: supervisor-file
   template: src=supervisor.conf.j2 dest=/etc/supervisor/conf.d/webfolder.conf
