@@ -26,6 +26,9 @@ Requirements
 Dependencies:
 
 * Python 2.7
+* python-virtualenv
+* python-pip
+* supervisor
 
 Installation
 ************
@@ -33,43 +36,46 @@ Installation
 Release
 -------
 
-* From source::
+* From tar installer::
 
     $ make install
 
-* From debian package::
+* From pip::
 
-    $ dpkg -i dropthings.deb
+    $ pip install .
+
 
 Development
 -----------
 
 ::
 
-    $ make develop
+    $ make develop_init
 
 Usage
 *****
 
-Development
------------
+#. Generate configuration file::
 
-* Build Deb::
+    $ aert-webfolder init <CONFIG_FILE> [--develop]
 
-    $ make deb
+#. Tweak configuration file
+#. Run::
+
+    $ export APP_CONFIG_WEBFOLDER=<CONFIG_FILE>
+    $ aert-webfolder runserver 127.0.0.1:8000
 
 Testing
 *******
 
 * Using Vagrant::
 
-     $ make vagrant_with_tests
+     $ make vagrant
 
 More Information
 ****************
 
-* GitHub : http://github.com/aert/aert-dropthings
-* Documentation : http://dropthings.readthedocs.org
+* GitHub : http://github.com/aert/aert-webfolder
  
 License
 -------
@@ -79,7 +85,7 @@ This project is licensed under the MIT license.
 Support
 -------
 
-* Issue Tracking : https://github.com/aert/aert-dropthings/issues
-* Pull Request : https://github.com/aert/aert-dropthings/pulls
+* Issue Tracking : https://github.com/aert/aert-webfolder/issues
+* Pull Request : https://github.com/aert/aert-webfolder/pulls
 
 Those who wish to contribute directly to the project can contact me at dev.aert@gmail.com to talk about getting repository access granted.

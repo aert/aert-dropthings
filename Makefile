@@ -34,7 +34,9 @@ clean_all:
 develop:
 	pip install -e .[testing]
 
-dev_setup_initial:
+develop_init: develop_deps develop
+
+develop_deps:
 	sudo apt-get install python-dev libpq-dev
 	# For wheel
 	pip install --upgrade pip setuptools
