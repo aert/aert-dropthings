@@ -46,7 +46,7 @@ dev_runserver:
 # VAGRANT
 # #######
 
-vagrant: vagrant_up vagrant_provision
+vagrant: installer vagrant_up 
 
 vagrant_up:
 	cd $(VAGRANT_PATH); vagrant up
