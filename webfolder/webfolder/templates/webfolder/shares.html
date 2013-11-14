@@ -10,6 +10,8 @@ My Shares {{ block.super }}
         My Shares
     </h3>
 
+    {% include "webfolder/includes/menu_new.html" %}
+
     <div class="event">
         <div class="label">
             <a href="{% url "files-detail" 1 %}"> <i class="circular attachment icon"></i></a>

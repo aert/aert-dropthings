@@ -4,6 +4,8 @@ PROJECT_VERSION:=$(shell python version.py)
 PROJECT_FILENAME=$(PROJECT_NAME)_$(PROJECT_VERSION)
 VAGRANT_PATH=deploy
 
+PIP_CACHE=./build/pip_cache
+
 ##  Installation Paths:
 #PREFIX?=/usr
 
@@ -34,7 +36,7 @@ clean_all:
 # #######
 
 develop:
-	pip install -e .[testing]
+	pip install -e .[testing] --download-cache $(PIP_CACHE)
 
 develop_init: develop_deps develop
 
@@ -94,7 +96,7 @@ installer_clean:
 	rm -rf build/setup_*
 
 wheel:
-	pip wheel --wheel-dir=build/wheel/wheel-dir . --download-cache ./build/pip_cache
+	pip wheel --wheel-dir=build/wheel/wheel-dir . --download-cache $(PIP_CACHE)
 	mv build/wheel/wheel-dir build/installer/wheel-dir
 	rm -rf build/wheel/
 

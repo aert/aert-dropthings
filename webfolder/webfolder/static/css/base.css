@@ -31,3 +31,6 @@ body.login #main_segment {
 	margin-right:auto;
 }
 
+.z_header_actions {
+    float: right;
+}
