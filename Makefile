@@ -30,7 +30,9 @@ clean_all:
 	rm -rf build
 
 
-## init dev env
+# DEVELOP
+# #######
+
 develop:
 	pip install -e .[testing]
 
@@ -44,6 +46,13 @@ develop_deps:
 dev_runserver:
 	export APP_CONFIG_WEBFOLDER=`pwd`/webfolder/etc/config_develop.ini; aert-webfolder runserver 0.0.0.0:8000
 
+semantic_latest:
+	@mkdir -p build/
+	@rm -rf build/semantic*
+	cd build; wget http://semantic-ui.com/build/semantic.zip; unzip semantic.zip -d semantic
+	@rm -rf webfolder/common/static/vendor/semantic/
+	mv build/semantic/packaged webfolder/common/static/vendor/semantic/
+	@rm -rf build/semantic*
 
 # VAGRANT
 # #######

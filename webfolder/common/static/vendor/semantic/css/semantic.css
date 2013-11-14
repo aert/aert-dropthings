@@ -16843,7 +16843,7 @@ ol.ui.list li,
 }
 
 .ui.list .item > .icon + .content {
-  float: left;
+  display: table-cell;
   vertical-align: top;
 }
 
