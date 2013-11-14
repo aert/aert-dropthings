@@ -2,7 +2,7 @@
 
 {% if user.is_authenticated or not "logout" in request.path%}
 
-<div class="ui orange inverted tiered menu">
+<div class="ui red inverted tiered menu" id="z_main_menu">
 	<div class="menu">
 		<a class="{% ancestor 'files' %} item" href="{% url "files" %}"> 
 			<i class="time icon"></i>Activity
