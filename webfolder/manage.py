@@ -5,7 +5,7 @@ import sys
 
 def main():
     setting_module = "webfolder.webui.settings.main"
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", setting_module)
+    os.environ["DJANGO_SETTINGS_MODULE"] = setting_module
 
     from django.core.management import execute_from_command_line
 
