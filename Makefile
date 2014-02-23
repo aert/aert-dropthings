@@ -45,8 +45,11 @@ develop_deps:
 	# For wheel
 	pip install --upgrade pip setuptools
 
-dev_runserver:
+runserver:
 	export APP_CONFIG_WEBFOLDER=`pwd`/webfolder/etc/config_develop.ini; aert-webfolder runserver 0.0.0.0:8000
+
+syncdb:
+	export APP_CONFIG_WEBFOLDER=`pwd`/webfolder/etc/config_develop.ini; aert-webfolder syncdb
 
 semantic_latest:
 	@mkdir -p build/
